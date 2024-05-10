@@ -1,5 +1,5 @@
 public class PorductoNoPerecedero extends Producto{
-    public PorductoNoPerecedero(String nombre, String descripcion) throws Exception {
-        super(nombre, descripcion);
+    public PorductoNoPerecedero(String nombre, String descripcion,TipoMedida medida) throws Exception {
+        super(nombre, descripcion,medida);
     }
 }

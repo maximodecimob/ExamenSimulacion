@@ -3,8 +3,8 @@ import java.time.LocalDate;
 public class PorductoPerecedero extends Producto{
     private LocalDate fechaCaducidad;
 
-    public PorductoPerecedero(String nombre, String descripcion, LocalDate fechaCaducidad) throws Exception {
-        super(nombre, descripcion);
+    public PorductoPerecedero(String nombre, String descripcion,TipoMedida medida, LocalDate fechaCaducidad) throws Exception {
+        super(nombre, descripcion,medida);
         if(fechaCaducidad==null){
             throw new Exception();
         }

@@ -30,25 +30,21 @@ public class Supermercado {
         this.almacen = almacen;
     }
     public boolean comprar(Producto producto, double cantidad, LocalDate fecha,double precio){
-        /*
-        Si la compra es de un producto
-        perecedero la fecha de caducidad debe ser posterior a la de compra. Este método
-        devuelve si se ha podido realizar la compra o no
-         */
         try {
             Operacion op = new Operacion(TipoOperacion.COMPRA,producto,cantidad,fecha,precio);
             if(op.getProducto() instanceof PorductoPerecedero){
-                if(((PorductoPerecedero) producto).getFechaCaducidad().isAfter(fecha)){
+                if(((PorductoPerecedero) op.getProducto()).getFechaCaducidad().isAfter(fecha)){
                     almacen.add(op);
                     return true;
                 }
-                return false;
+            }else {
+                almacen.add(op);
+                return true;
             }
-            almacen.add(op);
-            return true;
         } catch (Exception e) {
             return false;
         }
+        return false;
     }
     public boolean vender(Producto producto, double cantidad, LocalDate fecha,double precio){
         try {
@@ -69,6 +65,20 @@ public class Supermercado {
         almacen.contains(op);
         almacen.remove(op);
          */
+    }
+    public ArrayList<Operacion> proximaCaducidad(int numDias){
+        ArrayList<Operacion> productosEnfecha= new ArrayList<>();
+        LocalDate hoy = LocalDate.now();
+        LocalDate fechaFinal = hoy.plusDays(numDias);
+        for (int i = 0; i < almacen.size(); i++) {
+            if(almacen.get(i).getOperacion()==TipoOperacion.COMPRA && almacen.get(i).getProducto() instanceof PorductoPerecedero){
+                if(!((PorductoPerecedero) almacen.get(i).getProducto()).getFechaCaducidad().isBefore(hoy)&&
+                !((PorductoPerecedero) almacen.get(i).getProducto()).getFechaCaducidad().isAfter(fechaFinal)){
+                    productosEnfecha.add(almacen.get(i));
+                }
+            }
+        }
+        return productosEnfecha;
     }
     public double cantidadProducto(String nombre){
         double stock=0;
