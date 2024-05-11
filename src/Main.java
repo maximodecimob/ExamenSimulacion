@@ -58,10 +58,9 @@ public class Main {
     }
 
     private static void crearArchivo(Supermercado supermercado) {
-        PrintWriter pw;
         ArrayList<Operacion>almacen = supermercado.getAlmacen();
         try {//Aquí me falta hacer en productos no perecederos que no aparezca la fecha de caducidad y poner kg/ud/l
-            pw = new PrintWriter("Operaciones supermercado.txt");
+            PrintWriter pw = new PrintWriter("Operaciones supermercado.txt");
             pw.println("Productos perecederos");
             for(Operacion op: almacen){
                 if(op.getProducto() instanceof PorductoPerecedero){
@@ -69,11 +68,13 @@ public class Main {
                             ,((PorductoPerecedero) op.getProducto()).getFechaCaducidad());
                 }
             }
+            pw.println("Productos no perecederos");
             for(Operacion op: almacen){
                 if(op.getProducto() instanceof PorductoNoPerecedero){
                     pw.printf("10%s,20%s,%7.2f,%7.2f,%10s\n",op.getOperacion(),op.getProducto().getNombre(),op.getCantidad(),op.getPrecio(),op.getFecha());
                 }
             }
+            pw.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
