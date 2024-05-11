@@ -56,7 +56,7 @@ public class Main {
     private static void crearArchivo(Supermercado supermercado) {
         PrintWriter pw;
         ArrayList<Operacion>almacen = supermercado.getAlmacen();
-        try {
+        try {//Aquí me falta hacer en productos no perecederos que no aparezca la fecha de caducidad y poner kg/ud/l
             pw = new PrintWriter("Operaciones supermercado.txt");
             pw.println("Productos perecederos");
             for(Operacion op: almacen){
@@ -74,7 +74,6 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-    }
     }
 }
 /*
