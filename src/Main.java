@@ -13,15 +13,15 @@ public class Main {
                     LocalDate.now().plusDays(10));
             PorductoPerecedero peras = new PorductoPerecedero("Peras","Fruta",TipoMedida.UNIDADES,
                     LocalDate.now().plusDays(10));
-            supermercado.comprar(manzana,1000,LocalDate.of(2023,05,26),100);
-            supermercado.comprar(peras,500,LocalDate.of(2023,05,26),10);
+            supermercado.comprar(manzana,1000,LocalDate.of(2023, 5,26),100);
+            supermercado.comprar(peras,500,LocalDate.of(2023,5,26),10);
             PorductoNoPerecedero primero = new PorductoNoPerecedero("Platano","Fruta",TipoMedida.KILOGRAMOS);
             PorductoNoPerecedero segundo = new PorductoNoPerecedero("Naranjas","Color Naranja",TipoMedida.KILOGRAMOS);
-            supermercado.comprar(primero,100,LocalDate.of(2024,04,05),100);
-            supermercado.comprar(segundo,50,LocalDate.of(2024,04,04),80);
-            supermercado.vender(manzana,50,LocalDate.of(2023,06,26),20);
-            supermercado.vender(peras,50,LocalDate.of(2023,06,26),10);
-            supermercado.vender(primero,50,LocalDate.of(2024,06,26),30);
+            supermercado.comprar(primero,100,LocalDate.of(2024,4,5),100);
+            supermercado.comprar(segundo,50,LocalDate.of(2024,4,4),80);
+            supermercado.vender(manzana,50,LocalDate.of(2023,6,26),20);
+            supermercado.vender(peras,50,LocalDate.of(2023,6,26),10);
+            supermercado.vender(primero,50,LocalDate.of(2024,6,26),30);
             ArrayList<Operacion> op = supermercado.proximaCaducidad(15);
             for (int i = 0;i<op.size();i++){
                 String nombre ;
@@ -34,17 +34,21 @@ public class Main {
                 }
                 String caduca;
                 if (op.get(i).getProducto() instanceof PorductoPerecedero){
-                    caduca = "Cad: "+((PorductoPerecedero) op.get(i).getProducto()).getFechaCaducidad().toString();
+                    caduca = "Cad: "+((PorductoPerecedero) op.get(i).getProducto()).getFechaCaducidad();
                 }else{
                     caduca = "";
                 }
-                System.out.printf(" %-22s %-12.2f%2s %-12s Valor: %-7.2f€ \n",op.get(i).getProducto().getNombre(),op.get(i).getCantidad(),nombre,
+                System.out.println(op.get(i).getProducto().getNombre()+"\t"+ op.get(i).getCantidad()+nombre+" \t"+
+                        caduca+"\tValor: "+op.get(i).getPrecio()+"€");
+                System.out.printf("%-10s %6.2f %-2s %-20s Valor: %7.2f€\n",op.get(i).getProducto().getNombre(),op.get(i).getCantidad(),nombre,
                         caduca,op.get(i).getPrecio());
             }
+            //Guardar Datos
             FileOutputStream file = new FileOutputStream("supermercado.sup");
             ObjectOutputStream archivo = new ObjectOutputStream(file);
             archivo.writeObject(supermercado);
             archivo.close();
+            //generar archivo
             crearArchivo(supermercado);
 
         } catch (Exception e) {

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PorductoPerecedero extends Producto{
+public class PorductoPerecedero extends Producto implements Serializable {
     private LocalDate fechaCaducidad;
 
     public PorductoPerecedero(String nombre, String descripcion,TipoMedida medida, LocalDate fechaCaducidad) throws Exception {

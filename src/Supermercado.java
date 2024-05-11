@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Supermercado {
+public class Supermercado implements Serializable {
     private String nombre;
     private ArrayList<Operacion> almacen;
 

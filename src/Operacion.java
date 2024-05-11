@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Operacion {
+public class Operacion implements Serializable {
     private TipoOperacion operacion;
     private Producto producto;
     private double cantidad;
