@@ -67,7 +67,7 @@ public class Main {
             }
             for(Operacion op: almacen){
                 if(op.getProducto() instanceof PorductoNoPerecedero){
-                    pw.printf("10%s,20%s,%7.2f,%7.2f,%10s\n",op.getOperacion(),op.getProducto().getNombre(),op.getCantidad(),op.getPrecio(),op.getFecha();
+                    pw.printf("10%s,20%s,%7.2f,%7.2f,%10s\n",op.getOperacion(),op.getProducto().getNombre(),op.getCantidad(),op.getPrecio(),op.getFecha());
                 }
             }
         } catch (FileNotFoundException e) {
